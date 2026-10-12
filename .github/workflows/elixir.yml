@@ -3,7 +3,7 @@ name: Elixir Direct Pipeline (no mix)
 on: 
     pull_request:
         branches:
-            -main
+            - main
 
 jobs:
     build-and-run:
