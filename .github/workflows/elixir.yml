@@ -1,0 +1,30 @@
+name: Elixir Direct Pipeline (no mix)
+
+on: 
+    pull_request:
+        branches:
+            -main
+
+jobs:
+    build-and-run:
+        name: Compilar y Ejecutar
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout del código
+              uses: actions/checkout@v4
+
+            - name: Configurar BEAM (Erlang y Elixir)
+              uses: erlef/setup-beam@v1
+              with:
+                elixir-version: '1.17'
+                otp-version: '26'
+            
+            - name: Compilar módulos (.ex) a ebin
+              run: |
+                mkdir -p ebin
+                elixirc lib/*.ex -o ebin
+            
+            - name: Ejecutar script principal (.exs)
+              run: |
+                elixir -pa ebin scripts/main.exs
