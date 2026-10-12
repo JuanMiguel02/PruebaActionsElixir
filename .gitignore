@@ -1,0 +1,8 @@
+# Artefactos de compilación directa
+ebin/
+*.beam
+
+# Archivos de sistema / IDEs
+.DS_Store
+.vscode/
+.idea/
